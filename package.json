@@ -1,0 +1,28 @@
+{
+  "name": "modal-loading",
+  "version": "1.1.0",
+  "description": "Customizable Loading Modal Plugin - jQuery modal-loading",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pcollaog/modal-loading.git"
+  },
+  "keywords": [
+    "jquery"
+  ],
+  "author": "c",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pcollaog/modal-loading/issues"
+  },
+  "homepage": "https://www.jqueryscript.net/loading/Customizable-Loading-Modal-Plugin.html",
+  "devDependencies": {
+    "grunt": "^1.0.4",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-cssmin": "^3.0.0",
+    "grunt-contrib-uglify": "^4.0.1"
+  }
+}
