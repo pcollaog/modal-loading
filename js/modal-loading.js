@@ -36,8 +36,8 @@
 	 * @param {Object} options	构造Loading的具体参数
 	 * @return {Loading} 		Loading对象
 	 */
-	const init = Loading.prototype._init = function($target, options) {
-		
+	var init = Loading.prototype._init = function($target, options) {
+
 		this.version = '1.0.0';
 
 		this.$target = $target;
@@ -71,8 +71,8 @@
 		this.$loadingDiscription = $('<p class="loading-discription"></p>');
 
 		// zIndex
-		if(this.set.zIndex <= 0) {
-			this.set.zIndex = (this.$target.siblings().length-1 || this.$target.children().siblings().length) + 10001;
+		if (this.set.zIndex <= 0) {
+			this.set.zIndex = (this.$target.siblings().length - 1 || this.$target.children().siblings().length) + 10001;
 		}
 
 		// var attr, value;
@@ -95,15 +95,15 @@
 		this._buildLoading();
 
 		this._buildTitle();
-		
+
 		this._buildLoadingAnimation();
-		
+
 		this._buildDiscription();
 
 		// 是否初始化过
 		this._init = false;
 
-		if(this.set.defaultApply) {
+		if (this.set.defaultApply) {
 			this.apply();
 		}
 
@@ -116,18 +116,18 @@
 	Loading.prototype._buildMask = function() {
 
 		// 如果不适用遮罩层
-		if(!this.set.mask) {
+		if (!this.set.mask) {
 			this.$modalMask.css({
-				position: 	'absolute',
-				top: 		'-200%',
+				position: 'absolute',
+				top: '-200%',
 			});
-			return ;
+			return;
 		}
 
 		// 遮罩层样式
 		this.$modalMask.css({
-			backgroundColor: 	this.set.maskBgColor,
-			zIndex: 			this.set.zIndex,
+			backgroundColor: this.set.maskBgColor,
+			zIndex: this.set.zIndex,
 		});
 
 		// 添加额外的class
@@ -142,15 +142,15 @@
 	Loading.prototype._buildLoading = function() {
 
 		this.$modalLoading.css({
-			width: 				this.set.loadingWidth,
-			height: 			this.set.loadingHeight,
-			padding: 			this.set.loadingPadding,
-			backgroundColor: 	this.set.loadingBgColor,
-			borderRadius: 		this.set.loadingBorderRadius,
+			width: this.set.loadingWidth,
+			height: this.set.loadingHeight,
+			padding: this.set.loadingPadding,
+			backgroundColor: this.set.loadingBgColor,
+			borderRadius: this.set.loadingBorderRadius,
 		});
 
 		// 布局方式
-		if(this.set.direction === 'hor') {
+		if (this.set.direction === 'hor') {
 			this.$modalLoading.addClass('modal-hor-layout');
 		}
 
@@ -165,14 +165,14 @@
 	 */
 	Loading.prototype._buildTitle = function() {
 
-		if(!this.set.title) {
-			return ;
+		if (!this.set.title) {
+			return;
 		}
 
 
 		this.$loadingTitle.css({
-			color: 		this.set.titleColor,
-			fontSize: 	this.set.titleFontSize,
+			color: this.set.titleColor,
+			fontSize: this.set.titleFontSize,
 		});
 
 		this.$loadingTitle.addClass(this.set.titleClassName);
@@ -196,16 +196,16 @@
 			height: this.set.animationHeight,
 		});
 
-		if(this.set.loadingAnimation === 'origin') { // origin动画
+		if (this.set.loadingAnimation === 'origin') { // origin动画
 			this.$animationOrigin.children().css({
 				width: this.set.animationOriginWidth,
 				height: this.set.animationOriginHeight,
 				backgroundColor: this.set.animationOriginColor,
 			});
-			for(var i = 0; i < 5; i++) {
+			for (var i = 0; i < 5; i++) {
 				this.$loadingAnimation.append(this.$animationOrigin.clone());
 			}
-		} else if(this.set.loadingAnimation === 'image') { // 图片加载动画
+		} else if (this.set.loadingAnimation === 'image') { // 图片加载动画
 			this.$animationImage.attr('src', this.set.animationSrc);
 			this.$loadingAnimation.append(this.$animationImage);
 		} //else {
@@ -225,13 +225,13 @@
 	 */
 	Loading.prototype._buildDiscription = function() {
 
-		if(!this.set.discription) {
-			return ;
+		if (!this.set.discription) {
+			return;
 		}
 
 		this.$loadingDiscription.css({
-			color: 		this.set.discriptionColor,
-			fontSize: 	this.set.discriptionFontSize,
+			color: this.set.discriptionColor,
+			fontSize: this.set.discriptionFontSize,
 		});
 
 		this.$loadingDiscription.addClass(this.set.discriptionClassName);
@@ -250,7 +250,7 @@
 	Loading.prototype._position = function() {
 
 		windowWidth = $(window).width();
-		windowHeight = $(window).height(); 
+		windowHeight = $(window).height();
 
 		var loadingWidth = this.$modalLoading.outerWidth();
 		var loadingHeight = this.$modalLoading.outerHeight();
@@ -263,7 +263,7 @@
 		var y2 = loadingHeight >>> 1;
 		var top = y1 - y2;
 
-		this.$modalLoading.css({ top, left });
+		this.$modalLoading.css({ 'top': top, 'left': left });
 
 	}
 
@@ -273,13 +273,13 @@
 	 */
 	Loading.prototype._transitionAnimationIn = function() {
 
-		if(!this.set.animationIn) {
+		if (!this.set.animationIn) {
 			this.$modalMask.css({ display: 'block' });
 		} else {
 			// this.$modalMask.removeClass(this.set.animationOut).addClass(this.set.animationIn);
 			this.$modalMask.addClass(this.set.animationIn);
 		}
-		
+
 	}
 
 	/**
@@ -288,14 +288,14 @@
 	 */
 	Loading.prototype._transitionAnimationOut = function() {
 
-		
-		if(!this.set.animationOut) {
-			
+
+		if (!this.set.animationOut) {
+
 			// this.$modalMask.css({ display: 'none' });
 			this.$modalMask.remove();
 
 		} else {
-			
+
 			this._timer && this._timer.clearTimeout(this._timer);
 
 			this.$modalMask.removeClass(this.set.animationIn).addClass(this.set.animationOut);
@@ -321,7 +321,7 @@
 		this._transitionAnimationIn();
 
 		// 这样按理说可以增加性能, 因为不需要从内存中寻找_initLoading方法.
-		if(!this._init) {
+		if (!this._init) {
 			// 初始化Loading
 			this._initLoading();
 		}
@@ -343,8 +343,8 @@
 	Loading.prototype._initLoading = function() {
 
 		// 已经初始过 无需再次初始化
-		if(this._init) {
-			return ;
+		if (this._init) {
+			return;
 		}
 
 		// 添加到页面中
@@ -360,7 +360,7 @@
 		// });
 
 		var self = this;
-		
+
 		$(window).resize(function() {
 			windowWidth = $(window).width();
 			windowHeight = $(window).height();
@@ -383,49 +383,49 @@
 	 * @version 1.0.0
 	 */
 	Loading.prototype.set = {
-		direction: 				'ver',	 					// 方向. ver: 垂直, hor: 水平.
+		direction: 'ver', // 方向. ver: 垂直, hor: 水平.
 
-		title: 					undefined, 					// 标题内容.
-		titleColor: 			'#FFF', 					// 标题文字颜色.
-		titleFontSize: 			14, 						// 标题文字字体大小. 
-		titleClassName: 		undefined,					// 标题额外的class值.
+		title: undefined, // 标题内容.
+		titleColor: '#FFF', // 标题文字颜色.
+		titleFontSize: 14, // 标题文字字体大小. 
+		titleClassName: undefined, // 标题额外的class值.
 		// titleFontFamily: 	undefined,					// 标题字体样式
-		
-		discription: 			undefined, 					// 描述内容.
-		discriptionColor: 		'#FFF',						// 描述文字颜色.
-		discriptionFontSize: 	14,							// 描述文字字体大小. 
-		discriptionClassName: 	undefined,					// 描述额外的class值.
+
+		discription: undefined, // 描述内容.
+		discriptionColor: '#FFF', // 描述文字颜色.
+		discriptionFontSize: 14, // 描述文字字体大小. 
+		discriptionClassName: undefined, // 描述额外的class值.
 		// directionFontFamily: undefined,					// 描述字体样式.
 
-		loadingWidth: 			'auto',						// Loading宽度.
-		loadingHeight: 			'auto',						// Loading高度.
-		loadingPadding: 		20,							// Loading内边距.
-		loadingBgColor: 		'#252525',					// Loading背景颜色.
-		loadingBorderRadius: 	12,							// Loading的borderRadius.
+		loadingWidth: 'auto', // Loading宽度.
+		loadingHeight: 'auto', // Loading高度.
+		loadingPadding: 20, // Loading内边距.
+		loadingBgColor: '#252525', // Loading背景颜色.
+		loadingBorderRadius: 12, // Loading的borderRadius.
 		// loadingPosition: 		'fixed',					// Loading的position
 
-		mask: 					true, 						// 遮罩层. true: 显示遮罩层, false: 不显示. 
-		maskBgColor: 			'rgba(0, 0, 0, .6)',		// 遮罩层背景颜色.
-		maskClassName: 			undefined,					// 为遮罩层添加.
+		mask: true, // 遮罩层. true: 显示遮罩层, false: 不显示. 
+		maskBgColor: 'rgba(0, 0, 0, .6)', // 遮罩层背景颜色.
+		maskClassName: undefined, // 为遮罩层添加.
 		// maskPosition: 			'fixed',					// 遮罩层position
 
-		loadingAnimation: 		'origin',					// 加载动画. origin: 表示使用默认的原点动画, image: 表示使用自定义图片作为加载动画.
-		animationSrc: 			undefined,					// 图片加载动画的地址. (前提: loadingAnimation=origin, 以下简称origin或者image)
-		animationWidth: 		40, 						// 动画宽度. 为image时表示图片的宽度.
-		animationHeight: 		40,							// 动画高度. 为image时表示图片的高度.
-		animationOriginWidth:   4,							// 原点动画宽度.    (前提: origin)
-		animationOriginHeight:  4,							// 原点动画高度.    (前提: origin)
-		animationOriginColor:   '#FFF',						// 原点动画的颜色.  (前提: origin)
-		animationClassName: 	undefined,					// 为动画添加一个额外的class值.
-		
-		defaultApply: 			true,						// 默认自动显示.
-		animationIn: 			'animated fadeIn', 			// 入屏动画. 
-		animationOut: 			'animated fadeOut',			// 出屏动画.
-		animationDuration: 		1000,						// 动画持续时间(单位:ms)
+		loadingAnimation: 'origin', // 加载动画. origin: 表示使用默认的原点动画, image: 表示使用自定义图片作为加载动画.
+		animationSrc: undefined, // 图片加载动画的地址. (前提: loadingAnimation=origin, 以下简称origin或者image)
+		animationWidth: 40, // 动画宽度. 为image时表示图片的宽度.
+		animationHeight: 40, // 动画高度. 为image时表示图片的高度.
+		animationOriginWidth: 4, // 原点动画宽度.    (前提: origin)
+		animationOriginHeight: 4, // 原点动画高度.    (前提: origin)
+		animationOriginColor: '#FFF', // 原点动画的颜色.  (前提: origin)
+		animationClassName: undefined, // 为动画添加一个额外的class值.
+
+		defaultApply: true, // 默认自动显示.
+		animationIn: 'animated fadeIn', // 入屏动画. 
+		animationOut: 'animated fadeOut', // 出屏动画.
+		animationDuration: 1000, // 动画持续时间(单位:ms)
 		// fontFamily: 			'sans-serif',				// 文字字体样式.
 		// position: 				'fixed',				// 定位. mask和loading的定位.
 		// unit: 				'px', 						// 设置默认单位.
-		zIndex: 				0,							// 最外围层级(mask). 如果是0或者负数, 则为{$this.siblings() + 10001}.
+		zIndex: 0, // 最外围层级(mask). 如果是0或者负数, 则为{$this.siblings() + 10001}.
 
 	};
 
