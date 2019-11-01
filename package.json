@@ -1,6 +1,6 @@
 {
   "name": "modal-loading",
-  "version": "1.2.0",
+  "version": "1.2.1-beta",
   "description": "Customizable Loading Modal Plugin - jQuery modal-loading",
   "main": "index.js",
   "scripts": {
